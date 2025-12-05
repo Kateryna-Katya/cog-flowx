@@ -666,83 +666,146 @@ img {
     opacity: 0.8;
 }
 
-/* --- INNOVATIONS (Horizontal Scroll) --- */
+/* --- INNOVATIONS (Adaptive: Vertical on Mobile, Horizontal on Desktop) --- */
 .innovations {
-    /* Обязательно задаем фон, чтобы секция перекрывала контент под собой при скролле */
     background-color: var(--color-bg);
     position: relative;
-    overflow: hidden;
-    /* Гарантируем, что секция занимает весь экран при фиксации */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     z-index: 5;
-    min-height: 100vh;
+    /* На мобильном высота авто, чтобы контент влез */
+    min-height: auto;
+    padding: 0;
+    overflow: hidden;
 }
 
 .innovations .container {
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 20px;
-    flex-shrink: 0;
 }
 
 .innovations__wrapper {
     width: 100%;
-    height: 70vh;
-    /* Высота области скролла */
-    display: flex;
-    align-items: center;
+    /* На мобильном высота авто */
+    height: auto;
+    display: block;
+    /* Убираем flex на мобильном */
 }
 
 .innovations__track {
     display: flex;
-    height: 100%;
-    /* Ширина рассчитывается в зависимости от кол-ва элементов (в JS или auto) */
-    width: max-content;
+    flex-direction: column;
+    /* Вертикальный стек на мобильном */
+    width: 100%;
+    height: auto;
 }
 
 .innovations__item {
-    width: 80vw;
-    /* На мобильном почти весь экран */
-    height: 100%;
-    padding: 0 var(--spacing-container);
+    width: 100%;
+    /* Полная ширина */
+    height: auto;
+    padding: 40px var(--spacing-container);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-right: var(--border-width) solid var(--color-border);
+    border-bottom: var(--border-width) solid var(--color-border);
+    /* Линия снизу */
+    border-right: none;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
-@media (min-width: 768px) {
-    .innovations__item {
-        width: 45vw;
-        /* На десктопе слайды поуже */
-    }
+.innovations__item:last-child {
+    border-bottom: none;
 }
 
 .innovations__num {
-    font-size: 4rem;
+    font-size: 3rem;
+    /* Чуть меньше на мобильном */
     font-family: var(--font-head);
     font-weight: 800;
     color: var(--color-primary);
-    opacity: 0.2;
-    margin-bottom: -20px;
-    z-index: -1;
+    opacity: 0.1;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin-bottom: 0;
+    z-index: 0;
 }
 
 .innovations__item h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 20px;
     font-family: var(--font-head);
     line-height: 1.1;
+    position: relative;
+    z-index: 1;
+}
+
+.innovations__item p {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
 }
 
 .innovations__item img {
-    margin-top: auto;
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
     border: var(--border-width) solid var(--color-border);
+    position: relative;
+    z-index: 1;
+}
+
+/* --- DESKTOP STYLES (Horizontal Scroll) --- */
+@media (min-width: 768px) {
+    .innovations {
+        height: 100vh;
+        /* Фиксируем высоту экрана для pinning */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .innovations .container {
+        flex-shrink: 0;
+    }
+
+    .innovations__wrapper {
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        /* Скрываем хвост скролла */
+    }
+
+    .innovations__track {
+        flex-direction: row;
+        /* Возвращаем строку */
+        width: max-content;
+        height: 100%;
+    }
+
+    .innovations__item {
+        width: 45vw;
+        /* Ширина слайда */
+        height: 100%;
+        border-right: var(--border-width) solid var(--color-border);
+        border-bottom: none;
+        padding: 0 40px;
+    }
+
+    .innovations__num {
+        font-size: 5rem;
+        position: static;
+        opacity: 0.2;
+        margin-bottom: -30px;
+        text-align: left;
+    }
+
+    .innovations__item img {
+        height: 250px;
+        margin-top: auto;
+    }
 }
 
 /* --- BLOG --- */
