@@ -1087,3 +1087,88 @@ img {
     opacity: 0.6;
     padding-top: 20px;
 }
+/* --- LEGAL & TEXT PAGES --- */
+.pages {
+    padding-top: calc(var(--header-height) + 60px);
+    background-color: var(--color-bg);
+}
+
+.pages__title {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--color-accent);
+    line-height: 1.1;
+}
+
+.pages__content {
+    max-width: 800px;
+    /* Ограничиваем ширину для удобного чтения */
+    margin: 0 auto;
+    font-size: 1.05rem;
+}
+
+.pages__content h2 {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.pages__content p {
+    margin-bottom: 20px;
+    color: var(--color-text);
+    opacity: 0.9;
+    text-align: justify;
+}
+
+.pages__content ul {
+    list-style: none;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.pages__content li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+}
+
+.pages__content li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--color-accent);
+}
+
+.pages__content strong {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.pages__content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 700;
+}
+
+.pages__content a:hover {
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    text-decoration: none;
+    padding: 0 4px;
+}
